@@ -29,7 +29,9 @@ Since I pretty much just open sourced it how it was -- you'll have to follow the
     ```
 
 7. Visit the site locally (accept SSL warning) at <https://localhost/>.
+8. Good luck.
 
+[stripe]: https://manage.stripe.com/register
 [nodejs]: http://nodejs.org
 [sincerely]: https://dev.sincerely.com/user/signup
 [mongodb]: http://www.mongodb.org/downloads
