@@ -1,0 +1,51 @@
+
+//- views - customize
+
+extends layout
+
+block content
+  #spacer
+  .main-card
+    a(href='/', title='PinPigeon'): h1.ir= title
+    ul.steps
+      li: a(href='/preview') 1. Preview
+      li.active: a(href='/customize') 2. Customize
+      li: a(href='/checkout') 3. Checkout
+    h2 Complete the form below to customize your postcard:
+    h4= message
+    form(action='/customize', method='post')#customize
+      input(type='hidden', name='_csrf', value=csrf)
+      label Enter your return address
+      - draft.sender = draft.sender || {}
+      input(type='text', name='sender_name', required, value=(draft.sender.name || ''), placeholder='full name')
+      input(type='email', name='sender_email', required, value=(draft.sender.email || ''), placeholder='email address')
+      br
+      input(type='text', name='sender_street_1', required, value=(draft.sender.street_1 || ''), placeholder='street 1')
+      input(type='text', name='sender_street_2', value=(draft.sender.street_2 || ''), placeholder='street 2')
+      br
+      input(type='text', name='sender_city', required, value=(draft.sender.city || ''), placeholder='city')
+      input(type='text', name='sender_state', required, value=(draft.sender.state || ''), placeholder='state')
+      input(type='number', name='sender_zip', required, value=(draft.sender.zip || ''), placeholder='zip code')
+      label Enter your recipient's address*
+      - draft.recipient = draft.recipient || {}
+      input(type='text', name='recipient_name', value=(draft.recipient.name || ''), placeholder='full name')
+      input(type='email', name='recipient_email', value=(draft.recipient.email || ''), placeholder='email address')
+      br
+      input(type='text', name='recipient_street_1', value=(draft.recipient.street_1 || ''), placeholder='street 1')
+      input(type='text', name='recipient_street_2', value=(draft.recipient.street_2 || ''), placeholder='street 2')
+      br
+      input(type='text', name='recipient_city', value=(draft.recipient.city || ''), placeholder='city')
+      input(type='text', name='recipient_state', value=(draft.recipient.state || ''), placeholder='state')
+      input(type='number', name='recipient_zip', value=(draft.recipient.zip || ''), placeholder='zip code')
+      h3 <strong>* Don't know your recipient's address?</strong>&nbsp;&nbsp;Just enter their email, and we'll ask them for you!
+      label Write your own personalized &amp; printed message
+      h3 You can write up to 20 lines or 300 characters for the back of the postcard.
+      h4#characters
+        - var len = draft.text_message.length
+        - if (len >= 300)
+          | You have reached the limit.
+        - else
+          - var char = 300 - len
+          | #{char} characters remaining.
+      textarea(name='text_message', rows='5')#text-message= (draft.text_message || '')
+      button(type='submit').submit.btn.btn-large.btn-primary Continue

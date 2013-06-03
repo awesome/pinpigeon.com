@@ -1,0 +1,43 @@
+doctype 5
+html
+  head
+    title= title + ' - ' + tagline
+    meta(name='description', content='Send pins as printed & shipped postcards for only 1.95.')
+    meta(name='robots', content='noodp')
+    meta(http-equiv='cleartype', content='on')
+    meta(property='og:site_name', content='PinPigeon')
+    meta(property='og:type', content='website')
+    meta(property='og:title', content='PinPigeon')
+    meta(property='og:url', content='https://pinpigeon.com')
+    meta(property='og:description', content='Send pins as printed & shipped postcards for only 1.95.')
+    meta(property='og:image', content='https://pinpigeon.com/img/thumbnail.png')
+    meta(name='google-site-verification', content='aJr6n2bKfei0Qbn-P73f7hT1x6ols10REMqdZiuSAKc')
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/index.css')
+  body
+    #content
+      block content
+      a(href='mailto:support@pinpigeon.com').link-effect.support support@pinpigeon.com
+      .policies
+        a(href='/terms') Terms of Service
+        | &nbsp;&bull;&nbsp;
+        a(href='/privacy') Privacy Policy
+      #push
+    #company PinPigeon, LLC.
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+    script.
+      window.jQuery || document.write('<script src="/js/jquery.min.js')
+    script(src='/js/jquery.popupWindow.js')
+    //-script(src='//crossrider.cotssl.net/javascripts/installer/installer.js')
+    script(src='/js/index.js')
+    block scripts
+    script.
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36147257-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();

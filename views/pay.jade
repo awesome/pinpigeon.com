@@ -1,0 +1,21 @@
+
+//- views - pay
+
+extends layout
+
+block content
+  #spacer
+  .main-card
+    a(href='/', title='PinPigeon'): h1.ir= title
+    ul.steps
+      li: a(href='/preview') 1. Preview
+      li: a(href='/customize') 2. Customize
+      li.active: a(href='/checkout') 3. Checkout
+    h2 This is how the <strong>back of your postcard</strong> will look:
+    .preview: img(src=draft.preview_back_url)
+    h4 <strong>NOTE:</strong> We will email your recipient for their address if you did not provide one.
+    h2 This is how the <strong>front of your postcard</strong> will look:
+    .preview: img(src=draft.preview_url)
+    form(action='/checkout', method='post').pay
+      input(type='hidden', name='_csrf', value=csrf)
+      script(src='https://button.stripe.com/v1/button.js', class='stripe-button', data-key=stripe.publishableKey, data-amount='195', data-label='Checkout')

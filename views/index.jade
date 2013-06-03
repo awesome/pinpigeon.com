@@ -1,0 +1,47 @@
+
+//- views - index
+
+extends layout
+
+block content
+  - var url = 'http://pinterest.com/search/pins/?q='
+  - var pins = [ 'cat', 'Lamborghini', 'meme', 'celebrity', 'recipe', 'retro', 'birthday', 'Justin Bieber', 'vintage' ]
+  #fb-root
+  #spacer
+  .main-card
+    a(href='/', title='PinPigeon'): h1.ir= title
+    h2 Send pins as printed &amp; shipped postcards for only 1.95.
+    form(action='/preview', method='post')
+      input(type='hidden', name='_csrf', value=csrf)
+      label(for='url') Simply copy &amp; paste a link from <a href="http://pinterest.com" target="_blank" class="pop-up">Pinterest</a> below:
+      h4= message
+      input(type='url', name='url', placeholder='e.g. http://pinterest.com/pin/226305949996109835/', value=providedURL, required)#url
+      button(type='submit').submit.btn.btn-large.btn-primary= (providedURL !== '') ? 'Create postcard now!' : 'Try a preview now!'
+    //-a(href='#').link-effect.extension Also try our free browser extension.
+    a(href='https://chrome.google.com/webstore/detail/pinpigeon-for-pinterest/bokbjgfakkhkllopnpdpmpehhilhdple', target='_blank').link-effect Install Chrome Extension
+    - if (draft.preview_url)
+      a(href='/preview').link-effect: strong Resume your postcard in progress.
+    .widgets
+      a(href='https://twitter.com/share', data-url='https://pinpigeon.com', data-via='PinPigeon', data-related='teelaunch,niftylettuce').twitter-share-button Tweet
+      div(data-href='https://pinpigeon.com', data-send='true', data-layout='button_count', data-width='90', data-show-faces='false').fb-like
+  #quick-start
+    h2 Get started &mdash; <strong>right-click</strong> on a <strong>pin</strong> &amp; click <strong>Copy Link</strong>...
+    a(href=url + 'chocolate chip cookie recipe', target='_blank', title='Send a delicious chocolate chip cookie recipe to a friend!').pop-up: img(src='https://d33304ifi1rp4s.cloudfront.net/right-click-example.png')
+    h2 ... then <strong>paste</strong> its link <a href="#">above</a> &amp; <strong>customize</strong> it as a <strong>postcard</strong>.
+    .postcard.front
+    h3 Write your own personalized &amp; printed message for your recipient.
+    .postcard.back
+    h2 We print on <strong>4x6 recyclable postcards</strong> with <strong>non-toxic inks</strong>.
+    .postcard.smiley
+    h2 Then <strong>ship quickly</strong> to your recipients, <strong>100% guaranteed</strong>.
+    .postcard.mailbox
+    h2 Here are some <strong>popular pins</strong> for inspiration...
+  #popular-pins
+    each pin in pins
+      a(href=url + pin, target='_blank', title='View ' + pin + ' pins on Pinterest').pop-up.pin
+        h3= pin
+        div(class='img ' + pin.replace(/\s+/g, '-').toLowerCase() )
+  a(href='#').submit.btn.btn-large.btn-primary Get Started
+
+block scripts
+  include _social

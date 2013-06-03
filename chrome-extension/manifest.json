@@ -1,0 +1,29 @@
+{
+    "name" : "PinPigeon for Pinterest"
+  , "version" : "0.0.3"
+  , "manifest_version": 2
+  , "description" : "Send pins as printed & shipped postcards for only 1.95."
+  , "background" : {
+        "scripts" : [ "google-analytics.js" ]
+      , "persistent" : false
+    }
+  , "icons": { "128": "icon-128x128.png", "48": "icon-48x48.png", "16": "icon-16x16.png" }
+  , "content_scripts" : [{
+      "all_frames" : true,
+      "js" : [ "jquery.min.js", "pinpigeon.js" ],
+      "matches" : [
+          "http://pinterest.com/*"
+        , "https://pinterest.com/*"
+        , "http://www.pinterest.com/*"
+        , "https://www.pinterest.com/*"
+      ]
+    }]
+  , "browser_action": {
+        "default_title" : "PinPigeon for Pinterest"
+      , "default_icon" : "icon-19x19.png"
+      , "default_popup" : "popup.html"
+    }
+  , "homepage_url": "https://pinpigeon.com"
+  , "content_security_policy" : "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+  , "update_url": "http://clients2.google.com/service/update2/crx"
+}

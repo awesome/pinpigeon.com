@@ -1,0 +1,17 @@
+
+//- views - preview
+
+extends layout
+
+block content
+  #spacer
+  .main-card
+    a(href='/', title='PinPigeon'): h1.ir= title
+    ul.steps
+      li.active: a(href='/preview') 1. Preview
+      li: a(href='/customize') 2. Customize
+      li: a(href='/checkout') 3. Checkout
+    h2 This is how the <strong>front of your postcard</strong> will look:
+    .preview: img(src=draft.preview_url)
+    a(href='/customize').submit.btn.btn-large.btn-primary Continue
+    a(href='/').link-effect Or try another pin.

@@ -1,0 +1,16 @@
+
+extends layout
+
+block content
+  #spacer
+  .main-card
+    a(href='/', title='PinPigeon'): h1.ir= title
+    label Thank you for your order!
+    h2 We'll print &amp; ship your postcard within 2-5 days.
+    //-a(href='#').link-effect.extension Also try our free browser extension.
+    .widgets
+      a(href='https://twitter.com/share', data-url='https://pinpigeon.com', data-via='PinPigeon', data-related='sincerely').twitter-share-button Tweet
+      div(data-href='https://pinpigeon.com', data-send='true', data-layout='button_count', data-width='90', data-show-faces='false').fb-like
+
+block scripts
+  include _social
